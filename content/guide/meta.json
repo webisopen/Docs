@@ -1,0 +1,13 @@
+{
+  "title": "Core",
+  "root": true,
+  "pages": [
+    "---Core---",
+    "core/index",
+    "---Open Chain---",
+    "openchain/index",
+    "openchain/ovm",
+    "---Open Node---",
+    "opennode/index"
+  ]
+}

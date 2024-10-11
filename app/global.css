@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	/* Open orange: #FF4307 */
+	--primary: 15 100% 51%;
+}

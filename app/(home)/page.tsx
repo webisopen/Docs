@@ -1,22 +1,13 @@
-import Link from "next/link";
+"use client";
+
 import { redirect } from "next/navigation";
+import { useEffect } from "react";
 
 export default function HomePage() {
-	redirect("/guide/core");
+	useEffect(() => {
+		// so we can get og image work for home page
+		redirect("/guide/core");
+	}, []);
 
-	return (
-		<main className="flex h-screen flex-col justify-center text-center">
-			<h1 className="mb-4 text-2xl font-bold">Welcome to Open Docs</h1>
-			<p className="text-fd-muted-foreground">
-				You can open{" "}
-				<Link
-					href="/guide/core"
-					className="text-fd-foreground font-semibold underline"
-				>
-					/guide/core
-				</Link>{" "}
-				and see the documentation.
-			</p>
-		</main>
-	);
+	return <></>;
 }

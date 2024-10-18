@@ -2,36 +2,7 @@
 import type { HomeLayoutProps } from "fumadocs-ui/home-layout";
 import type { DocsLayoutProps } from "fumadocs-ui/layout";
 import { source } from "./source";
-
-// export interface Mode {
-// 	param: string;
-// 	name: string;
-// 	description: string;
-// }
-
-// export const modes: Mode[] = [
-// 	{
-// 		param: "core",
-// 		name: "Core",
-// 		description: "Core concepts",
-// 	},
-// 	{
-// 		param: "developer",
-// 		name: "For Developer",
-// 		description: "Build Guide",
-// 	},
-// 	{
-// 		param: "operator",
-// 		name: "For Node Operator",
-// 		description: "Operation Manual",
-// 	},
-// 	{
-// 		param: "ai",
-// 		name: "For AI",
-// 		description: "Artificial Intelligence",
-// 	},
-// ];
-
+import Image from "next/image";
 /**
  * Shared layout configurations
  *
@@ -41,7 +12,17 @@ import { source } from "./source";
  */
 export const baseOptions: HomeLayoutProps = {
 	nav: {
-		title: "Open Docs",
+		title: (
+			<>
+				<Image
+					alt="Open Documentation"
+					src="/logo/open.svg"
+					width={35}
+					height={35}
+				/>
+				Open Docs
+			</>
+		),
 	},
 	links: [
 		{
@@ -56,15 +37,4 @@ export const baseOptions: HomeLayoutProps = {
 export const guideOptions: DocsLayoutProps = {
 	...baseOptions,
 	tree: source.pageTree,
-	// sidebar: {
-	// 	banner: (
-	// 		<RootToggle
-	// 			options={modes.map((mode) => ({
-	// 				url: `/guide/${mode.param}`,
-	// 				title: mode.name,
-	// 				description: mode.description,
-	// 			}))}
-	// 		/>
-	// 	),
-	// },
 };

@@ -6,8 +6,14 @@
     "core/index",
     "---Open Chain---",
     "openchain/index",
-    "openchain/ovm",
+    "---Open Virtual Machine---",
+    "ovm/index",
     "---Open Node---",
-    "opennode/index"
+    "opennode/index",
+    "---Open Stack---",
+    "openstack/index",
+    "---Links---",
+    "[Github][Github](https://github.com/webisopen)",
+    "[Twitter][Twitter](https://x.com/intent/follow?screen_name=webisopen)"
   ]
 }

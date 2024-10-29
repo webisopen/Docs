@@ -1,11 +1,11 @@
 ---
-title: Contract Specification
-description: Learn more about OVM Contract Specification.
+title: Task Specification
+description: Learn more about OVM Task Specification.
 ---
 
 ## Introduction
 
-In order to access high-performance compute resources, contracts must conform to this specification.
+In order to access high-performance compute resources, task contracts must conform to this specification.
 
 ## Specification
 

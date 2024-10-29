@@ -1,17 +1,13 @@
 ---
-title: Publish an OVM Task
+title: Task
 description: Learn more about publishing an OVM Task.
 ---
 
 ## Introduction
 
-Open Virtual Machine, or OVM, is a high-performance, scalable, and secure virtual machine that is designed to run together with the Open Chain.
-It enables EVM smart contracts to access high-performance compute resources, such as Open Nodes, for executing complex computations like AI training, scientific simulations, or any other compute-intensive tasks that are not feasible on an EVM blockchain.
-The execution results are recorded onchain to offer verifiability and transparency.
+A task is a computation that is executed by the Open Virtual Machine (OVM) to access high-performance compute resources for complex computations like AI training, scientific simulations, or any other compute-intensive tasks that are not feasible on an EVM blockchain.
 
-## OVM Task
-
-Each smart contract essentially specifies a task, with the computation to be executed, the environment in which it should run, and the requirements for the execution.
+Each task uses a smart contract to specify the computation to be executed, the environment in which it should run, and the requirements for the execution.
 
 ## Getting Started
 
@@ -42,7 +38,7 @@ Modify the `foundry.toml` to include `node_modules` directory:
 
 ### Development
 
-You may refer to the [OVM Cal PI](https://github.com/webisopen/ovm-cal-pi) repository for a sample smart contract that calculates the value of PI onchain.
+You may refer to the [OVM Cal PI](https://github.com/webisopen/ovm-cal-pi) repository for a sample smart contract that calculates the value of PI on-chain.
 
 #### Initialization
 

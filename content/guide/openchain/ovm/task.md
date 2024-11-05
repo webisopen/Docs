@@ -42,24 +42,33 @@ You may refer to the [OVM Cal PI](https://github.com/webisopen/ovm-cal-pi) repos
 
 #### Initialization
 
-The constructor initializes the smart contract with the specification of the task to be executed.
+The constructor initializes the smart contract with the specification of the task to be executed. 
 For more details, refer to the [OVM Contract Specification](./specification).
 
-```js
-    constructor(address OVMTaskAddress, address admin) OVMClient(OVMTaskAddress, admin) {
+Additionally, `admin` address is also defined in the constructor for collecting royalty fees.
+
+```solidity
+    constructor(
+        address OVMTaskAddress,
+        address admin
+    ) OVMClient(OVMTaskAddress, admin) {
         Specification memory spec;
         spec.name = "ovm-cal-pi";
         spec.version = "1.0.0";
         spec.description = "Calculate PI";
-        spec.environment = "python:3.7";
         spec.repository = "https://github.com/webisopen/ovm-cal-pi";
         spec.repoTag = "9231c80a6cba45c8ff9a1d3ba19e8596407e8850";
         spec.license = "WTFPL";
-        spec.entrypoint = "src/main.py";
-        spec.requirement =
-            Requirement({ram: "256mb", disk: "5mb", timeout: 600, cpu: 1, gpu: false});
-        spec.apiABIs =
-            '[{"request":{"type":"function","name":"getResponse","inputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"stateMutability":"view"},"getResponse":{"type":"function","name":"getResponse","inputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"stateMutability":"view"}}]';
+        spec.requirement = Requirement({
+            ram: "256mb",
+            disk: "5mb",
+            timeout: 600,
+            cpu: 1,
+            gpu: 0,
+            gpuModel: GPUModel.T4
+        });
+        spec
+            .apiABIs = '[{"request": {"type":"function","name":"sendRequest","inputs":[{"name":"numDigits","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"stateMutability":"payable"},"getResponse":{"type":"function","name":"getResponse","inputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"stateMutability":"view"}}]';
         spec.royalty = 5;
         spec.execMode = ExecMode.JIT;
         spec.arch = Arch.ARM64;
@@ -72,7 +81,7 @@ For more details, refer to the [OVM Contract Specification](./specification).
 
 Here is an example of how to send a request to calculate the value of PI with a given number of digits:
 
-```js
+```solidity
     /**
      * @dev Sends a request to calculate the value of PI with a specified number of digits.
      * @param numDigits The number of digits to calculate for PI.
@@ -100,7 +109,7 @@ You can define a function with any params, just remember to encode all these par
 
 The interface `function setResponse(bytes32 requestId, bytes calldata data)` must be implemented in order to receive the returned response of your task execution.
 
-```js
+```solidity
     /**
      * @dev Sets the response data for a specific request. This function is called by the OVMTasks
      * contract.
@@ -125,6 +134,6 @@ Similarly, you need to decode the response here.
 
 ## Conclusion
 
-In this guide, we demostrated how to publish an OVM task by building a smart contract that specifies the computation to be executed, the environment in which it should run, and the requirements for the execution.
+In this guide, we demonstrated how to publish an OVM task by building a smart contract that specifies the computation to be executed, the environment in which it should run, and the requirements for the execution.
 
 You can now develop your smart contract with OVM to access high-performance compute resources for complex computations, AI training, and scientific simulations.

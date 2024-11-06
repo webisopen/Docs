@@ -13,7 +13,7 @@ export function createMetadata(override: Metadata): Metadata {
 		openGraph: {
 			title: override.title ?? undefined,
 			description: override.description ?? undefined,
-			url: "https://docs.open.network",
+			url: baseUrl,
 			images: "/banner.png",
 			siteName: "Open Docs",
 			...override.openGraph,
@@ -33,5 +33,5 @@ export const baseUrl =
 	process.env.NODE_ENV === "development" || !process.env.VERCEL_URL
 		? new URL("http://localhost:3000")
 		: process.env.NODE_ENV === "production"
-			? new URL("https://open.network")
+			? new URL("https://docs.open.network")
 			: new URL(`https://${process.env.VERCEL_URL}`);

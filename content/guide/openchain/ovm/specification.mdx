@@ -1,0 +1,157 @@
+---
+title: Specification
+description: Learn more about OVM Specification.
+---
+
+## Introduction
+
+In order to access verifiable high-performance compute resources available on Open Chain, OVM task contracts must conform to this specification.
+
+Since OVM tasks are languague-agnostic, the runtime environment is not part of this specification, but specified in its git repository.
+
+## Specification
+
+```js
+struct Specification {
+    string name;
+    string version;
+    string description;
+    string repository;
+    string repoTag;
+    string license;
+    Requirement requirement;
+    uint256 royalty;
+    string apiABIs;
+    Arch arch;
+    ExecMode execMode;
+}
+
+enum ExecMode {
+    JIT,
+    PERSISTENT
+}
+
+enum Arch {
+    AMD64,
+    ARM64
+}
+
+enum GPUModel {
+    T4
+}
+
+struct Requirement {
+    string ram;
+    string disk;
+    uint256 timeout;
+    uint256 cpu;
+    uint256 gpu;
+    GPUModel gpuModel;
+}
+
+```
+
+### Name
+
+Name of the task.
+
+Example: ovm-cal-pi
+
+### Version
+
+Version of the specification schema.
+
+Example: v1.0.0
+
+### Description
+
+Description of the task.
+
+Example: Calculate PI
+
+### Repository
+
+Git repository of the task runtime.
+
+Example: https://github.com/webisopen/ovm-cal-pi
+
+### RepoTag
+
+Semver tag or git sha of the task runtime repository.
+
+Example: v1.0.0
+
+### License
+
+License of the task.
+
+Example: WTFPL
+
+### Requirement
+
+Resources required to compute the task.
+
+Example:
+
+```json
+{ ram: "256mb", disk: "5mb", timeout: 600, cpu: 1, gpu: false}
+```
+
+### Royalty
+
+Royalty fee rate to be collected by the task author, in basis points.
+
+Example: 5 (equivalent to 0.05%)
+
+### ApiABIs
+
+Declaration of the abis for request&response interfaces.
+
+Example:
+
+```json
+[
+  {
+    "request": {
+      "type": "function",
+      "name": "sendRequest",
+      "inputs": [
+        { "name": "numDigits", "type": "uint256", "internalType": "uint256" }
+      ],
+      "outputs": [
+        { "name": "requestId", "type": "bytes32", "internalType": "bytes32" }
+      ],
+      "stateMutability": "payable"
+    },
+    "getResponse": {
+      "type": "function",
+      "name": "getResponse",
+      "inputs": [
+        { "name": "requestId", "type": "bytes32", "internalType": "bytes32" }
+      ],
+      "outputs": [{ "name": "", "type": "string", "internalType": "string" }],
+      "stateMutability": "view"
+    }
+  }
+]
+```
+
+### ExecMode
+
+Execution mode for the task runtime, `JIT` or `PERSISTENT`.
+
+Example:
+JIT: tasks are compiled by the runtime before execution.
+PERSISTENT: tasks require preemptive compilation to be executed instantly by available environment.
+
+### Arch
+
+Architecture of the task runtime.
+
+Example: ARM64 or AMD64
+
+The Specification defines the computation task and its requirement of external compute power.
+To ensure proper integration between your computation task and the contract, follow the following principles:
+
+1. **Input**: You can pass any type of parameters to the computation task, as long as they are correctly formatted as a single bytes variable in your contract (the computation task will decode it as needed).
+1. **Output**: The task must return a single `bytes` as output, which will be further processed and, if necessary, decoded within the contract.

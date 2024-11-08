@@ -5,13 +5,14 @@ description: Learn more about publishing an OVM Task.
 
 ## Introduction
 
-A task is a computation that is executed by the Open Virtual Machine (OVM) to access high-performance compute resources for complex computations like AI training, scientific simulations, or any other compute-intensive tasks that are not feasible on an EVM blockchain.
+A task is a computation unit that leverages OVM's access high-performance compute resources for completing complex computations like AI training, scientific simulations, or any other compute-intensive tasks that are not feasible on an EVM blockchain.
 
-Each task uses a smart contract to specify the computation to be executed, the environment in which it should run, and the requirements for the execution.
+Think of it as a dApp that knows the computation to be executed, the environment in which it should run, and the requirements for the execution.
+Once a new compute task is published by a user, the OVM gateway contract routes the task to the optimal executor to execute the task.
 
 ## Getting Started
 
-Let's see how you can get started with building and deploying smart contracts on OVM to publish a task.
+Let's see how you can get started with building and deploying smart contracts on OVM to deploy a task.
 
 ### Prerequisites
 
@@ -42,7 +43,7 @@ You may refer to the [OVM Cal PI](https://github.com/webisopen/ovm-cal-pi) repos
 
 #### Initialization
 
-The constructor initializes the smart contract with the specification of the task to be executed. 
+The constructor initializes the smart contract with the specification of the task to be executed.
 For more details, refer to the [OVM Contract Specification](./specification).
 
 Additionally, `admin` address is also defined in the constructor for collecting royalty fees.
@@ -101,13 +102,13 @@ Here is an example of how to send a request to calculate the value of PI with a 
     }
 ```
 
-This function sends a request to the OVM Gateway contract, which then forwards the request to the decentralized compute network for task execution.
+This function sends a request to the OVM gateway contract, which then allocates the optimal executor to execute the task.
 
 You can define a function with any params, just remember to encode all these params to a `bytes` type.
 
 #### Set Response
 
-The interface `function setResponse(bytes32 requestId, bytes calldata data)` must be implemented in order to receive the returned response of your task execution.
+The interface `function setResponse(bytes32 requestId, bytes calldata data)` must be implemented in order to receive the returned response of task execution.
 
 ```solidity
     /**

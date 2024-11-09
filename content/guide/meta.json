@@ -4,6 +4,7 @@
   "pages": [
     "---Core---",
     "core/index",
+    "...core",
     "---Open Chain---",
     "openchain/index",
     "openchain/ovm",

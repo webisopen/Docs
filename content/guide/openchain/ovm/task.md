@@ -25,7 +25,15 @@ Before you start building, make sure you have the following prerequisites:
 
 You should use foundry to [create a new project](https://book.getfoundry.sh/projects/creating-a-new-project).
 
-Then use NPM to install the dependencies, there are two packages required:
+1. You can use `forge` to install the dependencies (recommended):
+
+```bash
+forge install https://github.com/webisopen/ovm-contracts
+```
+
+
+2. Otherwise you can use NPM to install the dependencies, there are two packages required:
+
 
 ```bash
     npm i @webisopen/ovm-contracts @openzeppelin/contracts

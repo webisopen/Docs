@@ -1,0 +1,35 @@
+---
+id: openagent-use-cases
+title: Use Cases
+description: Learn OpenAgent's capabilities via use cases.
+---
+
+## Use Cases
+
+We demonstrate the use cases using Chainlit:
+
+<LinkCard id="chainlit" />
+
+Learn how to interact with OpenAgent via Chainlit.
+
+However, you may also use OpenAgent programmatically.
+
+<LinkCard id="openagent-integrations-app" />
+
+Learn how to integrate OpenAgent into your apps.
+
+### Initiate a Swap Transaction
+
+You can initiate a swap transaction using OpenAgent via Chainlit, simply send a query: `swap x amount of A to B`.
+
+![Swap Transaction GIF](./assets/use-cases-swap.gif)
+
+Behind the scenes, OpenAgent's Swap Executor extract the user's intent via an LLM, then initiates a swap transaction on the specified blockchain network.
+
+### Draft a Social Post
+
+You can also ask OpenAgent to draft a social post mimicking your tone (or anyone else), simply send a query: `show me vitalik.eth's recent posts, then write a 100-word post mimicking his tone`.
+
+![Draft Social Post GIF](./assets/use-cases-social-post.gif)
+
+Behind the scenes, OpenAgent's Social Executor retrieves the latest posts from the specified user in real time, then leverages an LLM to draft a post mimicking the user's tone.

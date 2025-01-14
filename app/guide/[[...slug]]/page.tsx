@@ -9,6 +9,7 @@ import {
 	DocsTitle,
 } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
+import { LinkCard } from "@/components/ui/link-card/link-card";
 
 export default async function Page(props: {
 	params: Promise<{ slug: string[] }>;
@@ -37,6 +38,7 @@ export default async function Page(props: {
 					components={{
 						...defaultMdxComponents,
 						APIPage: openapi.APIPage,
+						LinkCard: LinkCard,
 					}}
 				/>
 			</DocsBody>

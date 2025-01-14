@@ -1,0 +1,24 @@
+---
+id: api
+icon: Openapi
+title: OpenAgent API
+description: OpenAgent API documentation
+full: true
+_openapi:
+  toc:
+    - depth: 2
+      title: Create a chat completion
+      url: '#create-a-chat-completion'
+  structuredData:
+    headings:
+      - content: Create a chat completion
+        id: create-a-chat-completion
+    contents:
+      - content: |-
+          Create a model response for the given chat conversation.
+              This endpoint is compatible with OpenAI's API and processes the chat through a workflow agent 
+              that can utilize various tools and capabilities to provide comprehensive responses.
+        heading: create-a-chat-completion
+---
+
+<APIPage document={"https://agent.open.network/openapi.json"} operations={[{"method":"post","path":"/v1/chat/completions"}]} hasHead={true} />

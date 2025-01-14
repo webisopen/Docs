@@ -31,9 +31,7 @@ You should use foundry to [create a new project](https://book.getfoundry.sh/proj
 forge install https://github.com/webisopen/ovm-contracts
 ```
 
-
 2. Otherwise you can use NPM to install the dependencies, there are two packages required:
-
 
 ```bash
     npm i @webisopen/ovm-contracts @openzeppelin/contracts
@@ -51,21 +49,24 @@ You may refer to the [OVM Cal PI](https://github.com/webisopen/ovm-cal-pi) repos
 
 #### Initialization
 
-The constructor initializes the smart contract with the specification of the task to be executed.
+This contract inherits from `OVMClient` and `OwnableUpgradeable`.
+In the ``initialize`` method, it initializes the smart contract with the specification of the task to be executed.
 For more details, refer to the [OVM Contract Specification](./specification).
 
-Additionally, `admin` address is also defined in the constructor for collecting royalty fees.
+Additionally, `owner` address is defined to collect royalty fees escrowed in the contract.
 
 ```solidity
-    constructor(
-        address OVMTaskAddress,
-        address admin
-    ) OVMClient(OVMTaskAddress, admin) {
+contract Pi is OVMClient, OwnableUpgradeable {
+    // ...
+    function initialize(address owner) external initializer {
+        __Ownable_init(owner);
+
+        // set specification
         Specification memory spec;
         spec.name = "ovm-cal-pi";
         spec.version = "1.0.0";
         spec.description = "Calculate PI";
-        spec.repository = "https://github.com/webisopen/ovm-cal-pi";
+        spec.repository = "https://github.com/webisopen/ovm-pi";
         spec.repoTag = "9231c80a6cba45c8ff9a1d3ba19e8596407e8850";
         spec.license = "WTFPL";
         spec.requirement = Requirement({
@@ -76,14 +77,16 @@ Additionally, `admin` address is also defined in the constructor for collecting 
             gpu: 0,
             gpuModel: GPUModel.T4
         });
-        spec
-            .apiABIs = '[{"request": {"type":"function","name":"sendRequest","inputs":[{"name":"numDigits","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"stateMutability":"payable"},"getResponse":{"type":"function","name":"getResponse","inputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"stateMutability":"view"}}]';
+        spec.apiABIs =
+            '[{"request": {"type":"function","name":"sendRequest","inputs":[{"name":"numDigits","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"stateMutability":"payable"},"getResponse":{"type":"function","name":"getResponse","inputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"stateMutability":"view"}}]';
         spec.royalty = 5;
         spec.execMode = ExecMode.JIT;
-        spec.arch = Arch.ARM64;
+        spec.arch = Arch.AMD64;
 
         _updateSpecification(spec);
     }
+    // ...
+}
 ```
 
 #### Send Request
@@ -140,6 +143,15 @@ The interface `function setResponse(bytes32 requestId, bytes calldata data)` mus
 ```
 
 Similarly, you need to decode the response here.
+
+#### Collect Royalty
+
+Royalty fees are escrowed in the contract, this function enables the owner to withdraw the fees.
+```solidity
+    function withdraw() external onlyOwner {
+        payable(owner()).transfer(address(this).balance);
+    }
+```
 
 ## Conclusion
 

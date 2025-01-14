@@ -148,7 +148,7 @@ Common features are implemented in the `OVMClient` contract, which can be import
     contract Pi is OVMClient {
         mapping(bytes32 requestId => string result) internal _results;
 
-        constructor(address ovmTaskAddress, address admin) OVMClient(ovmTaskAddress, admin) {
+        constructor(address ovmTaskAddress, address owner) OVMClient(ovmTaskAddress, owner) {
             Requirement memory requirement =
                 Requirement({ram: "128mb", disk: "100mb", timeout: 1000, cpu: 1, gpu: 0, gpuModel: GPUModel.T4});
 

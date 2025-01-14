@@ -31,9 +31,7 @@ You should use foundry to [create a new project](https://book.getfoundry.sh/proj
 forge install https://github.com/webisopen/ovm-contracts
 ```
 
-
 2. Otherwise you can use NPM to install the dependencies, there are two packages required:
-
 
 ```bash
     npm i @webisopen/ovm-contracts @openzeppelin/contracts
@@ -51,15 +49,17 @@ You may refer to the [OVM Cal PI](https://github.com/webisopen/ovm-cal-pi) repos
 
 #### Initialization
 
-This contract inherits from `OVMClient` and `OwnableUpgradeable`. In the ``initialize`` method, it initializes the smart contract with the specification of the task to be executed. For more details, refer to the [OVM Contract Specification](./specification).
+This contract inherits from `OVMClient` and `OwnableUpgradeable`.
+In the ``initialize`` method, it initializes the smart contract with the specification of the task to be executed.
+For more details, refer to the [OVM Contract Specification](./specification).
 
-Additionally, `admin` address is defined to later collect royalty fees escrowed in the contract.
+Additionally, `owner` address is defined to collect royalty fees escrowed in the contract.
 
 ```solidity
 contract Pi is OVMClient, OwnableUpgradeable {
     // ...
-    function initialize(address admin) external initializer {
-        __Ownable_init(admin);
+    function initialize(address owner) external initializer {
+        __Ownable_init(owner);
 
         // set specification
         Specification memory spec;
@@ -146,7 +146,7 @@ Similarly, you need to decode the response here.
 
 #### Collect Royalty
 
-Royalty fees are escrowed in the contract, so we need to implement a function to collect the fees.
+Royalty fees are escrowed in the contract, this function enables the owner to withdraw the fees.
 ```solidity
     function withdraw() external onlyOwner {
         payable(owner()).transfer(address(this).balance);

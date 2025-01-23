@@ -7,13 +7,14 @@ description: A framework for building AI applications leveraging the power of th
 
 ## Introduction
 
-This guide will dive into the architecture of OpenAgent, a powerful and flexible framework for building on-chain AI agents, explaining its core components and mechanism.
+This guide will dive into the architecture of OpenAgent, a powerful, flexible, and verifiable framework for building on-chain AI agents, explaining its core components and mechanism, and the verifiable compute from Open Virtual Machine (OVM) that powers it.
 
 ## Architecture
 
 ![OpenAgent Architecture](./assets/architecture.png)
 
-The latest OpenAgent architecture showcases a refined and modular design, improving its overall performance and reducing its complexity. It primarily includes 3 logical core layers of components:
+The latest OpenAgent architecture showcases a refined and modular design, improving its overall performance and reducing its complexity.
+It primarily includes 3 logical core layers of components:
 
 - **Interpreter**
 - **Classifier**
@@ -35,7 +36,9 @@ The Interpreter serves as the brain of the OpenAgent architecture.
 
 ### Classifier
 
-The Classifier is a crucial new addition to the architecture, responsible for intelligent task routing. It employs a general model, such as Google Gemma, as a Classifier to classify tasks from Interpreters to another layer of Classifiers, which further classifies the tasks with a finer granularity. This layered strategy employs smaller, more specialized models, like Google CodeGemma, to enhance OpenAgent's speed and accuracy while reducing resource usage.
+The Classifier is a crucial new addition to the architecture, responsible for intelligent task routing.
+It employs a general model, such as Google Gemma (or any other capable models), as a Classifier to classify tasks from Interpreters to another layer of Classifiers, which further classifies the tasks with a finer granularity.
+This layered strategy employs smaller, more specialized models, like Google CodeGemma, to enhance OpenAgent's speed and accuracy while reducing resource usage.
 
 **Functions:**
 
@@ -44,7 +47,10 @@ The Classifier is a crucial new addition to the architecture, responsible for in
 
 ### Executor
 
-The Executor is responsible for executing specific tasks. The new architecture illustrates multiple Executors (A, B, C), indicating OpenAgent's support for diverse task execution capabilities. Behind the executors are models specialized in their respective domains, such as Google CodeGemma for coding tasks.
+The Executor is responsible for executing specific tasks, employing the verifiable compute from OVM to ensure task integrity and security.
+Each task executed by an Executor generates an on-chain proof, which can be verified using the Open Verifier. This proof is reproducible by any party, enabling trustless validation of the task’s correctness.
+The new architecture illustrates multiple Executors (A, B, C), indicating OpenAgent's support for diverse task execution capabilities.
+Behind the executors are models specialized in their respective domains, such as Google CodeGemma for coding tasks.
 
 **Functions:**
 

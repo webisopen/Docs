@@ -13,17 +13,17 @@
     "generate:openapi": "node scripts/generate-openapi.mjs"
   },
   "dependencies": {
-    "@rss3/web3-icons-react": "^0.0.16",
+    "@webisopen/icons-react": "0.0.22",
     "fumadocs-core": "14.2.1",
     "fumadocs-mdx": "11.1.1",
-    "fumadocs-openapi": "^5.11.8",
+    "fumadocs-openapi": "5.11.8",
     "fumadocs-ui": "14.2.1",
     "lucide-react": "^0.454.0",
-    "next": "^15.1.6",
+    "next": "^15.1.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sharp": "^0.33.5",
-    "shiki": "^1.29.1",
+    "shiki": "^1.29.2",
     "zod": "^3.24.1"
   },
   "devDependencies": {
@@ -33,9 +33,8 @@
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "autoprefixer": "^10.4.20",
-    "postcss": "^8.5.1",
+    "postcss": "^8.5.2",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3"
-  },
-  "packageManager": "pnpm@9.12.3"
+  }
 }

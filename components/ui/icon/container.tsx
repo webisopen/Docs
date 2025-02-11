@@ -1,4 +1,4 @@
-import type { IconRss3 } from "@rss3/web3-icons-react";
+import type { IconRss3 } from "@webisopen/icons-react";
 import type { LucideIcon } from "lucide-react";
 import { TerminalIcon } from "lucide-react";
 import type { HTMLAttributes } from "react";

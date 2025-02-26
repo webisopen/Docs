@@ -45,7 +45,7 @@ Modify the `foundry.toml` to include `node_modules` directory:
 
 ### Development
 
-You may refer to the [OVM Cal PI](https://github.com/webisopen/ovm-cal-pi) repository for a sample smart contract that calculates the value of PI on-chain.
+You may refer to the [OVM Tasks](https://github.com/webisopen/ovm-tasks/blob/main/src/tasks/Pi.sol) repository for a sample smart contract that calculates the value of PI on-chain.
 
 #### Initialization
 

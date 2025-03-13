@@ -14,13 +14,12 @@ This guide will dive into the architecture of OpenAgent, a powerful, flexible, a
 ![OpenAgent Architecture](./assets/architecture.png)
 
 The latest OpenAgent architecture showcases a refined and modular design, improving its overall performance and reducing its complexity.
-It primarily includes 5 logical layers of components:
+It primarily includes 4 logical layers of components:
 
 - **Core**
 - **Agent**
 - **Models**
 - **Tools**
-- **I/O**
 
 These components work collaboratively to form a complete AI agent capable of interpreting tasks, selecting appropriate tools, and interacting with the external world.
 
@@ -29,7 +28,7 @@ These components work collaboratively to form a complete AI agent capable of int
 ### Core
 
 `Core` includes the essential interfaces and utilities used by all other components, enabling rapid development of new features and tools.
-It provides the foundation for the entire architecture.
+It also provides the agent with necessary data storage capabilities to store and retrieve its knowledge base for self evolution and decision making. 
 
 ### Agent
 
@@ -47,11 +46,6 @@ This design enables flexible model replacement, allowing developers to customize
 `Tools` are the external services and APIs used by the agent to interact with the external world, to enable autonomous decision making by the agent.
 It also includes internal tools for data processing and analysis based on the input it received from models and tools.
 Tools can be chained to perform complex tasks, their orchestrations can be autonomously managed by the agent or customized by the deployer.
-
-### I/O
-
-`I/O` connects the agent to data sources for read and write operations, giving agent the ability to access real-time data from sources such as social media platforms and blockchain networks.
-It also provides the agent with necessary data storage capabilities to store and retrieve its knowledge base for self evolution and decision making. 
 
 ## Workflow
 
